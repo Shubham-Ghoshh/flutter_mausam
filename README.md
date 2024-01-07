@@ -37,3 +37,6 @@ This project utilizes the following open-source libraries:
 *geolocator
 *geocoding
 *lottie
+
+Screen Recording:
+https://github.com/Shubham-Ghoshh/flutter_mausam/assets/87618625/69420d16-c4ee-45bc-b5fc-471eb08bc6d6
