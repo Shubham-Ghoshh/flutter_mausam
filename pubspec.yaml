@@ -15,9 +15,17 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
+
+  # Enables making HTTP requests, essential for fetching data from APIs
   http: ^0.13.6
+
+  # Provides functionality to determine the device's location coordinates
   geolocator: ^10.1.0
+
+  # Translates latitude and longitude coordinates into readable location addresses
   geocoding: ^2.1.1
+
+  # Integrates high-quality animations via JSON files
   lottie: ^2.3.2
 
 dev_dependencies:

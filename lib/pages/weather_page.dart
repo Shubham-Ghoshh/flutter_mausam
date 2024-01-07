@@ -13,7 +13,9 @@ class WeatherPage extends StatefulWidget {
 
 class _WeatherPageState extends State<WeatherPage> {
   //api key
-  final _weatherService = WeatherService("9de5afb7eb2c19e87f82797378d92c86");
+  final String apiKey = "9de5afb7eb2c19e87f82797378d92c86";
+
+  late WeatherService _weatherService;
   Weather? _weather;
 
   //fetch weather
@@ -37,7 +39,7 @@ class _WeatherPageState extends State<WeatherPage> {
 
   //weather animations
   String getWeatherAnimation(String? mainCondition) {
-    if (mainCondition == null) return "assets/sunny.json"; //default to sunny
+    if (mainCondition == null) return "assets/loading.json"; //default to sunny
     switch (mainCondition.toLowerCase()) {
       case 'clouds':
         return "assets/clouds.json";
@@ -46,16 +48,21 @@ class _WeatherPageState extends State<WeatherPage> {
       case 'smoke':
         return "assets/smoke.json";
       case 'haze':
+        return "assets/haze.json";
       case 'dust':
+        return "assets/dust.json";
       case 'fog':
         return "assets/clouds.json";
       case 'rain':
-      case 'drizzle':
-      case 'shower rain':
         return "assets/raining.json";
+      case 'drizzle':
+        return "assets/drizzle.json";
+      case 'shower rain':
+        return "assets/shower_rain.json";
       case 'thunderstorm':
         return "assets/thunderstorm.json";
       case 'clear':
+        return "assets/sunny.json";
       default:
         return "assets/sunny.json";
     }
@@ -64,6 +71,8 @@ class _WeatherPageState extends State<WeatherPage> {
   @override
   void initState() {
     super.initState();
+    // Initializing WeatherService with the provided apiKey
+    _weatherService = WeatherService(apiKey);
     //fecth weather on startup
     _fetchWeather();
   }
@@ -78,14 +87,14 @@ class _WeatherPageState extends State<WeatherPage> {
           children: [
             //city name
             Text(
-              _weather?.cityName ?? "Loading city..",
+              _weather?.cityName ?? "", //show empty text upon loading city
               style: const TextStyle(
                 color: Colors.white70,
-                fontSize: 70,
+                fontSize: 50,
               ),
             ),
             const SizedBox(
-              height: 100,
+              height: 60,
             ),
 
             //animation
